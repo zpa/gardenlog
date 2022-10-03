@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} All treatments for plant {{plant}} {% endblock %}</h1>
+<table>
+  <tr class="table_head">
+    <th>Plant</th>
+    <th>Treatment</th>
+    <th>Treatment date</th>
+  </tr>
+    {% for info in plant_info %}
+        <tr class="table_entry">
+          <td>{{ info['plantDescription'] }}</td>
+          <td>{{ info['treatmentDescription'] }}</td>
+          <td>{{ info['treatmentDate'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

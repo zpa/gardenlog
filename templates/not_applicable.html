@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Treatments no longer applicable as of {{as_of}} {% endblock %}</h1>
+<table>
+  <tr class="table_head">
+    <th>Plant</th>
+    <th>Treatment</th>
+    <th>Number of actual treatments</th>
+    <th>Maximum allowed</th>
+  </tr>
+    {% for treatment in treatments %}
+        <tr class="table_entry">
+          <td>{{ treatment['plantDescription'] }}</td>
+          <td>{{ treatment['treatmentDescription'] }}</td>
+          <td>{{ treatment['treatments'] }}</td>
+          <td>{{ treatment['maxApplications'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+        

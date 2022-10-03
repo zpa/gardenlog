@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Treatment date limits as of {{as_of}} {% endblock %}</h1>
+<table>
+  <tr class="table_head">
+    <th>Plant</th>
+    <th>Treatment</th>
+    <th>Last treatment date</th>
+    <th>Safe to repeat date</th>
+  </tr>
+    {% for limit in date_limits %}
+        <tr class="table_entry">
+          <td>{{ limit['plant'] }}</td>
+          <td>{{ limit['treatment'] }}</td>
+          <td>{{ limit['treatmentDate'] }}</td>
+          <td>{{ limit['safeToRepeatDate'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+        

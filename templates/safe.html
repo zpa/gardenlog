@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Safe to consume dates as of {{as_of}} {% endblock %}</h1>
+<table>
+  <tr class="table_head">
+    <th>Plant</th>
+    <th>Treatment</th>
+    <th>Last treatment date</th>
+    <th>Safe to consume date</th>
+  </tr>
+    {% for date in dates %}
+        <tr class="table_entry">
+          <td>{{ date['plant'] }}</td>
+          <td>{{ date['treatment'] }}</td>
+          <td>{{ date['treatmentDate'] }}</td>
+          <td>{{ date['safeToConsumeDate'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+        

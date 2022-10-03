@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Treatment limit info for {{treatment}} {% endblock %}</h1>
+<table>
+  <tr class="table_head">
+    <th>Treatment</th>
+    <th>Species</th>
+    <th>Maximum applications</th>
+    <th>Application delay</th>
+    <th>Apply before</th>
+    <th>Days before consumption</th>
+  </tr>
+    {% for info in treatment_info %}
+        <tr class="table_entry">
+          <td>{{ info['treatment'] }}</td>
+          <td>{{ info['species'] }}</td>
+          <td>{{ info['maxApplications'] }}</td>
+          <td>{{ info['daysBetweenApplications'] }}</td>
+          <td>{{ info['applyBefore'] }}</td>
+          <td>{{ info['minDaysbeforeconsumption'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

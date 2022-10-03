@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Gardenlog {% endblock %}</h1>
+<p> Links to help you navigate:
+</p>
+<table>
+  <tr>
+    <td><a href="{{ url_for('date_limits', as_of_date = as_of) }}" id="date_limits">Treatment date limits in effect as of {{ as_of }}</a></td>
+  </tr>
+  <tr>
+    <td><a href="{{ url_for('safe', as_of_date = as_of) }}" id="safe">Safe to consume dates as of {{ as_of }}</a></td>
+  </tr>
+  <tr>
+    <td><a href="{{ url_for('not_applicable', as_of_date = as_of) }}" id="not_applicable">Treatments no longer applicable as of {{ as_of }}</a></td>
+  </tr>
+  <tr>
+    <td><a href="{{ url_for('no_info', as_of_date = as_of) }}" id="no_info">Treatments applied without limit information as of {{ as_of }}</a></td>
+  </tr>
+  <tr>
+    <td>All limit information about treatment
+      <select id="treatment_type" onselect="navigate_to_limit_info_page()">
+          {% for treatment in treatments %}
+          <option value="{{ treatment['id'] }}">{{ treatment['description'] }}</option>
+          {% endfor %}
+      </select>
+      <button onclick="navigate_to_limit_info_page()">go</button>
+    </td>
+  </tr>
+  <tr>
+    <td>All treatments of plant
+      <select id="plant" onselect="navigate_to_plant_info_page()">
+          {% for plant in plants %}
+          <option value="{{ plant['id'] }}">{{ plant['description'] }}</option>
+          {% endfor %}
+      </select>
+      as of {{ as_of }}
+      <button onclick="navigate_to_plant_info_page()">go</button>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript">
+  function navigate_to_limit_info_page() {
+      window.location.href = "{{ url_for('treatment_info', treatment_id = '') }}" + encodeURIComponent(document.getElementById("treatment_type").value)
+  }
+  function navigate_to_plant_info_page() {
+      window.location.href = "{{ url_for('plant_info', as_of_date = as_of, plant_id = '') }}" + encodeURIComponent(document.getElementById("plant").value)
+  }
+</script>
+{% endblock %}
